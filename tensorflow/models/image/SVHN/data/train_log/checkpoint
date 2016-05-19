@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/JasonHu/Git/tensorflow/tensorflow/models/image/SVHN/data/train_log/model.ckpt-0"
+all_model_checkpoint_paths: "/Users/JasonHu/Git/tensorflow/tensorflow/models/image/SVHN/data/train_log/model.ckpt-0"

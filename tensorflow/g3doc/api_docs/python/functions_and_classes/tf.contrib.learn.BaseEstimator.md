@@ -12,7 +12,7 @@ Parameters:
   model_dir: Directory to save model parameters, graph and etc.
 - - -
 
-#### `tf.contrib.learn.BaseEstimator.__init__(model_dir=None)` {#BaseEstimator.__init__}
+#### `tf.contrib.learn.BaseEstimator.__init__(model_dir=None, config=None)` {#BaseEstimator.__init__}
 
 
 
@@ -34,7 +34,8 @@ Evaluates given model with provided evaluation data.
 *  <b>`batch_size`</b>: minibatch size to use on the input, defaults to 32. Ignored
     if input_fn is set.
 *  <b>`steps`</b>: Number of steps to evalute for.
-*  <b>`metrics`</b>: Dict of metric ops to run.
+*  <b>`metrics`</b>: Dict of metric ops to run. If None, the default metric functions
+    are used; if {}, no metrics are used.
 
 ##### Returns:
 
@@ -48,7 +49,7 @@ Evaluates given model with provided evaluation data.
 
 - - -
 
-#### `tf.contrib.learn.BaseEstimator.fit(x, y, steps, batch_size=32, monitor=None)` {#BaseEstimator.fit}
+#### `tf.contrib.learn.BaseEstimator.fit(x, y, steps, batch_size=32, monitors=None)` {#BaseEstimator.fit}
 
 Trains a model given training data X and y.
 
@@ -63,8 +64,8 @@ Trains a model given training data X and y.
      (class labels in classification, real numbers in regression).
 *  <b>`steps`</b>: number of steps to train model for.
 *  <b>`batch_size`</b>: minibatch size to use on the input, defaults to 32.
-*  <b>`monitor`</b>: monitor object to print training progress and invoke
-           early stopping.
+*  <b>`monitors`</b>: List of `BaseMonitor` subclass instances. Used for callbacks
+            inside the training loop.
 
 ##### Returns:
 
@@ -91,7 +92,14 @@ params : mapping of string to any
 
 - - -
 
-#### `tf.contrib.learn.BaseEstimator.partial_fit(x, y, steps=1, batch_size=32, monitor=None)` {#BaseEstimator.partial_fit}
+#### `tf.contrib.learn.BaseEstimator.model_dir` {#BaseEstimator.model_dir}
+
+
+
+
+- - -
+
+#### `tf.contrib.learn.BaseEstimator.partial_fit(x, y, steps=1, batch_size=32, monitors=None)` {#BaseEstimator.partial_fit}
 
 Incremental fit on a batch of samples.
 
@@ -114,8 +122,8 @@ to converge, and you want to split up training into subparts.
     (class label in classification, real numbers in regression).
 *  <b>`steps`</b>: number of steps to train model for.
 *  <b>`batch_size`</b>: minibatch size to use on the input, defaults to 32.
-*  <b>`monitor`</b>: Monitor object to print training progress and invoke
-           early stopping.
+*  <b>`monitors`</b>: List of `BaseMonitor` subclass instances. Used for callbacks
+            inside the training loop.
 
 ##### Returns:
 
@@ -150,7 +158,7 @@ Returns prediction probabilities for given features (classification).
 
 
 *  <b>`x`</b>: features.
-*  <b>`batch_size`</b>: OVerride default batch size.
+*  <b>`batch_size`</b>: Override default batch size.
 
 ##### Returns:
 
@@ -175,7 +183,7 @@ self
 
 - - -
 
-#### `tf.contrib.learn.BaseEstimator.train(input_fn, steps, monitor=None)` {#BaseEstimator.train}
+#### `tf.contrib.learn.BaseEstimator.train(input_fn, steps, monitors=None)` {#BaseEstimator.train}
 
 Trains a model given input builder function.
 
@@ -185,8 +193,8 @@ Trains a model given input builder function.
 *  <b>`input_fn`</b>: Input builder function, returns tuple of dicts or
             dict and Tensor.
 *  <b>`steps`</b>: number of steps to train model for.
-*  <b>`monitor`</b>: monitor object to print training progress and invoke
-           early stopping.
+*  <b>`monitors`</b>: List of `BaseMonitor` subclass instances. Used for callbacks
+            inside the training loop.
 
 ##### Returns:
 
